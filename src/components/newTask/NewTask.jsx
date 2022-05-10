@@ -41,15 +41,27 @@ export const NewTask = () => {
     description: "",
     date: "",
     progress: "",
-    tags: "",
+    isTodo: "",
+    isProgress: "",
+    isDone: "",
     task: "",
   });
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    let { name, value, checked, type } = e.target;
+    value = type === "checkbox" ? checked : value;
     setForm({ ...form, [name]: value });
   };
 
-  const { title, description, date,  task } = form;
+  const {
+    title,
+    description,
+    date,
+    progress,
+    isTodo,
+    isProgress,
+    isDone,
+    task,
+  } = form;
 
   const hadleSubmit = (e) => {
     e.preventDefault();
@@ -116,11 +128,53 @@ export const NewTask = () => {
         </label>
         <br />
         <br />
+        <label for="progress">
+          Choose Any :-
+          <select name="progress" value={progress}>
+            <option value="todo">Todo</option>
+            <option value="inprogress">Inprogress</option>
+            <option value="done">Done</option>
+          </select>
+        </label>
+        <br />
+        <br />
+        <label>
+          Tags Multiple :-
+          <input
+            type="checkbox"
+            name="isTodo"
+            checked={isTodo}
+            onChange={handleChange}
+            required
+          >
+            Todo
+          </input>
+          <input
+            type="checkbox"
+            name="isProgress"
+            checked={isProgress}
+            onChange={handleChange}
+            required
+          >
+            Progress
+          </input>
+          <input
+            type="checkbox"
+            name="isDone"
+            checked={isDone}
+            onChange={handleChange}
+            required
+          >
+            Done
+          </input>
+        </label>
+        <br />
+        <br />
         <label>
           Task :-
           <input
             type="text"
-            placeholder="Add Task"
+            placeholder="Write About Task "
             name="task"
             value={task}
             onChange={handleChange}
