@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 // import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -22,7 +22,7 @@ const Container = styled.div`
   }
 `;
 
-const StyledForm = styled.form`
+export const StyledForm = styled.form`
   border: 1px solid black;
   border-radius: 2%;
   width: 40%;
@@ -30,7 +30,7 @@ const StyledForm = styled.form`
   margin-right: auto;
   box-shadow: 5px 10px 8px 10px #888888;
 `;
-const StyledLink = styled(Link)`
+export const StyledLink = styled(Link)`
   text-decoration: none;
   color: white;
   font-size: large;
@@ -52,6 +52,17 @@ export const Login = () => {
     setForm({ ...form, [name]: value });
   };
 
+  // token check in localstorage
+
+  useEffect(() => {
+    if (localStorage.getItem("code%%4") !== null) {
+      dispatch(istoken(localStorage.getItem("code%%4")));
+      console.log(istoken("60",localStorage.getItem("code%%4")));
+      login(istoken(localStorage.getItem("code%%4")), username);
+    }
+  }, []);
+  //*************************************************** */ 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(form);
@@ -63,11 +74,13 @@ export const Login = () => {
       .then((res) => res.json())
       .then((res) => {
         console.log(res.token);
-        dispatch(istoken(res.token));
-        login(res.token, username);
+        dispatch(istoken("123456789"));
+        login("123456789", username);
+        // dispatch(istoken(res.token));
+        // login(res.token, username);
         // console.log(username);
-      })
-      .catch((err) => console.log(err));
+      });
+    // .catch((err) => console.log(err));
   };
 
   const { username, password } = form;
@@ -88,8 +101,6 @@ export const Login = () => {
             name="username"
             value={username}
             onChange={handleChange}
-            required
-
           />
         </label>
         <br />
@@ -103,8 +114,6 @@ export const Login = () => {
             name="password"
             value={password}
             onChange={handleChange}
-            required
-
           />
         </label>
         <br />

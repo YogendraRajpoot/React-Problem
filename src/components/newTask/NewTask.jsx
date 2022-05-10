@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+// import { StyledLink } from "../login/Login";
+import { Sidebar } from "../sidebar/Sidebar";
+import { LeftBar, Main, RightBar } from "../summary/Summary";
 
 const Container = styled.div`
   background-image: linear-gradient(
@@ -19,23 +21,32 @@ const Container = styled.div`
 const StyledForm = styled.form`
   border: 1px solid black;
   border-radius: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+  font-weight: 1000;
   width: 40%;
   margin-left: auto;
   margin-right: auto;
   box-shadow: 5px 10px 8px 10px #888888;
-`;
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: white;
-  font-size: large;
-  font-weight: 600;
-  &:hover {
+  .submit {
+    padding: 2% 5%;
+    font-weight: 1000;
     color: black;
   }
 `;
+// const StyledLink = styled(Link)`
+//   text-decoration: none;
+//   color: white;
+//   font-size: large;
+//   font-weight: 600;
+//   &:hover {
+//     color: black;
+//   }
+// `;
 
 export const NewTask = () => {
-  const navigate = useNavigate();
   const [form, setForm] = useState({
     title: "",
     description: "",
@@ -63,10 +74,10 @@ export const NewTask = () => {
     task,
   } = form;
 
-  const hadleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log(form);
-    fetch(`https://masai-api-mocker.herokuapp.com/auth/register`, {
+    fetch(`http://localhost:3001/todo`, {
       method: "post",
       body: JSON.stringify(form),
       headers: { "Content-Type": "application/json" },
@@ -74,122 +85,137 @@ export const NewTask = () => {
       .then((res) => res.json())
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
-    login();
+    setForm({
+      title: "",
+      description: "",
+      date: "",
+      progress: "",
+      isTodo: "",
+      isProgress: "",
+      isDone: "",
+      task: "",
+    });
   };
-  const login = () => {
-    navigate("/login");
-  };
+  
 
   return (
-    <Container>
-      <h1>Register</h1>
-      <br />
-      <br />
-      <StyledForm onSubmit={hadleSubmit}>
-        <br />
-        <br />
-        <label>
-          {" "}
-          Title :-
-          <input
-            type="text"
-            placeholder="Enter Your Title"
-            name="title"
-            value={title}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <br />
-        <br />
-        <label>
-          Description :-
-          <input
-            type="text"
-            placeholder="Enter Description"
-            name="description"
-            value={description}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <br />
-        <br />
-        <label>
-          Date :-
-          <input
-            type="text"
-            placeholder="Enter Date"
-            name="date"
-            value={date}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <br />
-        <br />
-        <label for="progress">
-          Choose Any :-
-          <select name="progress" value={progress}>
-            <option value="todo">Todo</option>
-            <option value="inprogress">Inprogress</option>
-            <option value="done">Done</option>
-          </select>
-        </label>
-        <br />
-        <br />
-        <label>
-          Tags Multiple :-
-          <input
-            type="checkbox"
-            name="isTodo"
-            checked={isTodo}
-            onChange={handleChange}
-            required
-          >
-            Todo
-          </input>
-          <input
-            type="checkbox"
-            name="isProgress"
-            checked={isProgress}
-            onChange={handleChange}
-            required
-          >
-            Progress
-          </input>
-          <input
-            type="checkbox"
-            name="isDone"
-            checked={isDone}
-            onChange={handleChange}
-            required
-          >
-            Done
-          </input>
-        </label>
-        <br />
-        <br />
-        <label>
-          Task :-
-          <input
-            type="text"
-            placeholder="Write About Task "
-            name="task"
-            value={task}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <br />
-        <br />
-        <input type="submit" value="Submit" />
-        <br />
-        <br />
-        <StyledLink to={"/login"}>or Login</StyledLink>
-        <br />
-        <br />
-      </StyledForm>
-    </Container>
+    <Main>
+      <LeftBar>
+        <Sidebar />
+      </LeftBar>
+      <RightBar>
+        <Container>
+          <h1>Register</h1>
+          <br />
+          <br />
+          <StyledForm onSubmit={handleSubmit}>
+            <br />
+            <br />
+            <label>
+              {" "}
+              Title :-
+              <input
+                type="text"
+                placeholder="Enter Your Title"
+                name="title"
+                value={title}
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <br />
+            <br />
+            <label>
+              Description :-
+              <input
+                type="text"
+                placeholder="Enter Description"
+                name="description"
+                value={description}
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <br />
+            <br />
+            <label>
+              Date :-
+              <input
+                type="text"
+                placeholder="Enter Date"
+                name="date"
+                value={date}
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <br />
+            <br />
+            <label name="progress">
+              Choose Any :-
+              <select name="progress" value={progress}>
+                <option value="todo">Todo</option>
+                <option value="inprogress">Inprogress</option>
+                <option value="done">Done</option>
+              </select>
+            </label>
+            <br />
+            <br />
+            <label>
+              Personal
+              <input
+                type="checkbox"
+                name="isTodo"
+                checked={isTodo}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+            <br />
+            <label>
+              Official
+              <input
+                type="checkbox"
+                name="isProgress"
+                checked={isProgress}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+            <br />
+            <label>
+              Other
+              <input
+                type="checkbox"
+                name="isDone"
+                checked={isDone}
+                onChange={handleChange}
+              />
+            </label>
+
+            <br />
+            <br />
+            <label>
+              Sub Task :-
+              <input
+                type="text"
+                placeholder="Write About Task "
+                name="task"
+                value={task}
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <br />
+            <br />
+            <input className="submit" type="submit" value="Submit" />
+            <br />
+            <br />
+            <br />
+            <br />
+          </StyledForm>
+        </Container>
+      </RightBar>
+    </Main>
   );
 };

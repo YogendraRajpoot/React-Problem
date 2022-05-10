@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { AuthContext } from "../AuthContext";
+import { StyledLink } from "../login/Login";
 
 const Container = styled.div`
   // background-color: transparent;
@@ -21,6 +22,8 @@ const Section2 = styled.div`
   height: 30vh;
   border: 2px solid black;
   display: flex;
+  font-size: large;
+  font-weight: 1000;
   flex-direction: column;
   justify-content: space-evenly;
 `;
@@ -34,10 +37,12 @@ const Box = styled.div`
     background-color: blue;
   }
 `;
-// const Section3 = styled.div`
-//   height: 5vh;
-//   border: 2px solid black;
-// `;
+const Section3 = styled.div`
+  height: auto;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+`;
 const Logout = styled.button`
   border: none;
   background-color: transparent;
@@ -70,7 +75,7 @@ export const Sidebar = () => {
       </Section1>
       <Section2>
         <div>
-          <Box className="all">All 4</Box>
+          <Box >All 4</Box>
         </div>
         <div>
           <Box>Personal 1</Box>
@@ -82,6 +87,10 @@ export const Sidebar = () => {
           <Box>other 1</Box>
         </div>
       </Section2>
+      <Section3>
+        <StyledLink to={"/"}>Summary</StyledLink>
+        <StyledLink to={"/newtask"}>Add New Task</StyledLink>
+      </Section3>
       <Logout onClick={logout}>Logout</Logout>
     </Container>
   );

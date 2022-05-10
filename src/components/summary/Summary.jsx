@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import styled from "styled-components";
 import { Sidebar } from "../sidebar/Sidebar";
 
-const Main = styled.div`
+export const Main = styled.div`
   width: 100%;
   display: flex;
   height: 927px;
   background-image: linear-gradient(to right, #fc5c7d, #6a82fb);
 `;
-const LeftBar = styled.div`
+export const LeftBar = styled.div`
   margin-top: 2%;
   width: 20%;
   height: 20vw;
@@ -24,7 +24,7 @@ const LeftBar = styled.div`
   position: fixed;
   left: 2%;
 `;
-const RightBar = styled.div`
+export const RightBar = styled.div`
   background-color: transparent;
   box-shadow: 5px 10px 8px 10px #141414;
   height: 42vw;

@@ -1,0 +1,53 @@
+{
+  "todo": [
+    {
+      "title": "walking",
+      "description": "for diet",
+      "date": "11-05-2022",
+      "progress": "",
+      "isTodo": true,
+      "isProgress": false,
+      "isDone": false,
+      "task": "none",
+      "id": 1
+    },
+    {
+      "title": "asa",
+      "description": "asdas",
+      "date": "aada",
+      "progress": "",
+      "isTodo": true,
+      "isProgress": "",
+      "isDone": "",
+      "task": "asda",
+      "id": 2
+    },
+    {
+      "title": "asa",
+      "description": "asdas",
+      "date": "aada",
+      "progress": "",
+      "isTodo": true,
+      "isProgress": "",
+      "isDone": "",
+      "task": "asda",
+      "id": 3
+    },
+    {
+      "id": 4
+    },
+    {
+      "id": 5
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
