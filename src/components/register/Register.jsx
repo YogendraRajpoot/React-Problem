@@ -85,6 +85,7 @@ export const Register = () => {
             name="name"
             value={name}
             onChange={handleChange}
+            required
           />
         </label>
         <br />
@@ -97,6 +98,8 @@ export const Register = () => {
             name="email"
             value={email}
             onChange={handleChange}
+            required
+
           />
         </label>
         <br />
@@ -109,6 +112,8 @@ export const Register = () => {
             name="password"
             value={password}
             onChange={handleChange}
+            required
+
           />
         </label>
         <br />
@@ -121,6 +126,8 @@ export const Register = () => {
             name="username"
             value={username}
             onChange={handleChange}
+            required
+
           />
         </label>
         <br />
@@ -133,6 +140,8 @@ export const Register = () => {
             name="mobilenumber"
             value={mobilenumber}
             onChange={handleChange}
+            required
+
           />
         </label>
         <br />
@@ -145,6 +154,8 @@ export const Register = () => {
             name="aboutyou"
             value={aboutyou}
             onChange={handleChange}
+            required
+
           />
         </label>
         <br />

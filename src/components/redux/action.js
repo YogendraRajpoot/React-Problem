@@ -1,5 +1,5 @@
-export const is_Login = "IS_LOGIN";
-export const Login = "LOGIN";
+export const is_Login = "is_Login";
+export const Login = "Login";
 export const Token="Token"
 
 export const islogin = (payload) => ({
@@ -10,7 +10,7 @@ export const login = (payload) => ({
   type: Login,
   payload,
 });
-export const token = (payload) => ({
+export const istoken = (payload) => ({
   type: Token,
   payload,
 });

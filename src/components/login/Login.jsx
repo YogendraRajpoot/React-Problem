@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { AuthContext } from "../AuthContext";
-import { token } from "../redux/action";
+import { istoken } from "../redux/action";
+// import { token } from "../redux/action";
 
 const Container = styled.div`
   background-image: linear-gradient(
@@ -60,7 +62,8 @@ export const Login = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        dispatch(token(res.token));
+        console.log(res.token);
+        dispatch(istoken(res.token));
         login(res.token, username);
         // console.log(username);
       })
@@ -85,6 +88,8 @@ export const Login = () => {
             name="username"
             value={username}
             onChange={handleChange}
+            required
+
           />
         </label>
         <br />
@@ -98,6 +103,8 @@ export const Login = () => {
             name="password"
             value={password}
             onChange={handleChange}
+            required
+
           />
         </label>
         <br />

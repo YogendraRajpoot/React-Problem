@@ -1,7 +1,7 @@
 import { is_Login, Login, Token } from "./action";
 
 export const ReducerK = (
-  store = { user: {}, isLogin: false, Token: "" },
+  store ,
   action
 ) => {
   switch (action.type) {
@@ -18,7 +18,7 @@ export const ReducerK = (
     case Token:
       return {
         ...store,
-        token: { ...action.payload },
+        token: action.payload
       };
 
     default:

@@ -47,7 +47,7 @@ const Logout = styled.button`
 
 export const Sidebar = () => {
   const { logout, username } = useContext(AuthContext);
-  const token = useSelector((state) => state.Token);
+  const token = useSelector((state) => state.token);
   const [profile, setProfile] = useState({});
   useEffect(() => {
     if (token) {
