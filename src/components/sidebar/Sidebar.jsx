@@ -20,7 +20,7 @@ const Section1 = styled.div`
 `;
 const Section2 = styled.div`
   height: 30vh;
-  border: 2px solid black;
+  // border: 2px solid black;
   display: flex;
   font-size: large;
   font-weight: 1000;
@@ -39,7 +39,7 @@ const Box = styled.div`
 `;
 const Section3 = styled.div`
   height: auto;
-  border: 2px solid black;
+  // border: 2px solid black;
   display: flex;
   flex-direction: column;
 `;
@@ -73,24 +73,25 @@ export const Sidebar = () => {
       <Section1>
         <h1>{profile.name}</h1>
       </Section1>
-      <Section2>
-        <div>
-          <Box >All 4</Box>
-        </div>
-        <div>
-          <Box>Personal 1</Box>
-        </div>
-        <div>
-          <Box>Official 2</Box>
-        </div>
-        <div>
-          <Box>other 1</Box>
-        </div>
-      </Section2>
       <Section3>
+        <StyledLink to={"/home"}>Home</StyledLink>
         <StyledLink to={"/"}>Summary</StyledLink>
         <StyledLink to={"/newtask"}>Add New Task</StyledLink>
       </Section3>
+      <Section2>
+        <div>
+          <Box>All </Box>
+        </div>
+        <div>
+          <Box>Personal </Box>
+        </div>
+        <div>
+          <Box>Official </Box>
+        </div>
+        <div>
+          <Box>Other </Box>
+        </div>
+      </Section2>
       <Logout onClick={logout}>Logout</Logout>
     </Container>
   );

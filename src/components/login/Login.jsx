@@ -32,9 +32,9 @@ export const StyledForm = styled.form`
 `;
 export const StyledLink = styled(Link)`
   text-decoration: none;
-  color: white;
+  color: black;
   font-size: large;
-  font-weight: 600;
+  font-weight: 1000;
   &:hover {
     color: black;
   }
@@ -74,10 +74,10 @@ export const Login = () => {
       .then((res) => res.json())
       .then((res) => {
         console.log(res.token);
-        dispatch(istoken("123456789"));
-        login("123456789", username);
-        // dispatch(istoken(res.token));
-        // login(res.token, username);
+        dispatch(istoken(res.token));
+        login(res.token, username);
+        // dispatch(istoken("123456789"));
+        // login("123456789", "username");
         // console.log(username);
       });
     // .catch((err) => console.log(err));

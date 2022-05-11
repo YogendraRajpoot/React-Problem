@@ -52,9 +52,9 @@ export const NewTask = () => {
     description: "",
     date: "",
     progress: "",
-    isTodo: "",
-    isProgress: "",
-    isDone: "",
+    personal: "",
+    official: "",
+    other: "",
     task: "",
   });
   const handleChange = (e) => {
@@ -68,9 +68,9 @@ export const NewTask = () => {
     description,
     date,
     progress,
-    isTodo,
-    isProgress,
-    isDone,
+    personal,
+    official,
+    other,
     task,
   } = form;
 
@@ -90,13 +90,9 @@ export const NewTask = () => {
       description: "",
       date: "",
       progress: "",
-      isTodo: "",
-      isProgress: "",
-      isDone: "",
       task: "",
     });
   };
-  
 
   return (
     <Main>
@@ -166,7 +162,7 @@ export const NewTask = () => {
               <input
                 type="checkbox"
                 name="isTodo"
-                checked={isTodo}
+                checked={personal}
                 onChange={handleChange}
               />
             </label>
@@ -177,7 +173,7 @@ export const NewTask = () => {
               <input
                 type="checkbox"
                 name="isProgress"
-                checked={isProgress}
+                checked={official}
                 onChange={handleChange}
               />
             </label>
@@ -188,7 +184,7 @@ export const NewTask = () => {
               <input
                 type="checkbox"
                 name="isDone"
-                checked={isDone}
+                checked={other}
                 onChange={handleChange}
               />
             </label>
