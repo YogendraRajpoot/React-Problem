@@ -48,6 +48,8 @@ const Logout = styled.button`
   background-color: transparent;
   font-size: larger;
   font-weight: 600;
+  cursor: pointer;
+  
 `;
 
 export const Sidebar = () => {
