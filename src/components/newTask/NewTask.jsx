@@ -149,7 +149,7 @@ export const NewTask = () => {
             <br />
             <label name="progress">
               Choose Any :-
-              <select name="progress" value={progress}>
+              <select name="progress" value={progress} onChange={handleChange}>
                 <option value="todo">Todo</option>
                 <option value="inprogress">Inprogress</option>
                 <option value="done">Done</option>
