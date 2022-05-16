@@ -77,7 +77,7 @@ export const NewTask = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(form);
-    fetch(`http://localhost:3001/todo`, {
+    fetch(`https://fake-json-todo.herokuapp.com/todo`, {
       method: "post",
       body: JSON.stringify(form),
       headers: { "Content-Type": "application/json" },

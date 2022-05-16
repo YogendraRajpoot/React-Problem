@@ -1,8 +1,8 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { islogin } from "./redux/action";
-const data = require("../db.json");
+import { islogin, userName } from "./redux/action";
+// const data = require("../db.json");
 
 export const AuthContext = createContext();
 
@@ -16,14 +16,17 @@ export const AuthContextProvider = ({ children }) => {
   // }, []);
 
   const dispatch = useDispatch();
-  const [username, setUserName] = useState("");
+  // const [username, setUserName] = useState("");
   const navigate = useNavigate();
 
   const login = (token, username) => {
     if (token !== undefined) {
-      console.log("token", token);
+      console.log("24 username",username);
+      console.log("25 token", token,username);
       localStorage.setItem("code%%4", token);
-      setUserName(username);
+      localStorage.setItem("code%%4_name", username);
+      dispatch(userName (username));
+      // setUserName(username);
       dispatch(islogin(true));
       navigate(`/`);
     }
@@ -31,12 +34,13 @@ export const AuthContextProvider = ({ children }) => {
   // localStorage.getItem("code%%4");
   const logout = () => {
     localStorage.removeItem("code%%4");
+    localStorage.removeItem("code%%4_name");
     dispatch(islogin(true));
     navigate(`/login`);
   };
 
   return (
-    <AuthContext.Provider value={{ login, logout, username }}>
+    <AuthContext.Provider value={{ login, logout}}>
       {children}
     </AuthContext.Provider>
   );

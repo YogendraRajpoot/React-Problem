@@ -56,12 +56,15 @@ export const Login = () => {
 
   useEffect(() => {
     if (localStorage.getItem("code%%4") !== null) {
-      dispatch(istoken(localStorage.getItem("code%%4")));
-      console.log(istoken("60",localStorage.getItem("code%%4")));
-      login(istoken(localStorage.getItem("code%%4")), username);
+      // dispatch(istoken(localStorage.getItem("code%%4")));
+      console.log(localStorage.getItem("code%%4"));
+      login(
+        localStorage.getItem("code%%4"),
+        localStorage.getItem("code%%4_name")
+      );
     }
   }, []);
-  //*************************************************** */ 
+  //*************************************************** */
 
   const handleSubmit = (e) => {
     e.preventDefault();

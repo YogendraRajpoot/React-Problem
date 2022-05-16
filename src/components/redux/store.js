@@ -5,4 +5,5 @@ export const store = createStore(ReducerK, {
   user: {},
   isLogin: false,
   token: "",
+  username:"",
 });

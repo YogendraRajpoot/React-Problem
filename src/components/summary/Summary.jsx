@@ -27,7 +27,7 @@ export const LeftBar = styled.div`
 export const RightBar = styled.div`
   background-color: transparent;
   box-shadow: 5px 10px 8px 10px #141414;
-  height: 42vw;
+  height: 95%;
   //   display: flex;
   //   flex-direction: column;
   align-items: center;

@@ -18,36 +18,39 @@ const Card = styled.div`
 `;
 
 export const Home = () => {
-  const [data, setData] = useState({});
+  
+  const [data, setData] = useState([]);
   useEffect(() => {
     getData();
   }, []);
 
   const getData = () => {
-    fetch(`http://localhost:3001/todo`)
+    fetch(`https://fake-json-todo.herokuapp.com/todo`)
       .then((res) => res.json())
       .then((res) => {
-        console.log("15", res);
+        // console.log("15", res);
         setData(res);
       })
       .catch((err) => console.log(err));
   };
   return (
     <Main>
-      {console.log("35", data)}
+      {/* {console.log("35", data)} */}
       <LeftBar>
         <Sidebar />
       </LeftBar>
       <RightBar>
         {data.map((i) => {
-          console.log("43", i);
+          // console.log("43", i);
           return (
-            <Card>
+            <Card key={i.id}>
+              <br />
               <h3>{i.title}</h3>
               <p>{i.description}</p>
               <p>{i.date}</p>
               <p>{i.progress}</p>
               <p>{i.task}</p>
+              <br />
             </Card>
           );
         })}

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { AuthContext } from "../AuthContext";
@@ -49,31 +49,38 @@ const Logout = styled.button`
   font-size: larger;
   font-weight: 600;
   cursor: pointer;
-  
 `;
 
 export const Sidebar = () => {
-  const { logout, username } = useContext(AuthContext);
+  const { logout } = useContext(AuthContext);
   const token = useSelector((state) => state.token);
-  const [profile, setProfile] = useState({});
+
+  var username = useSelector((state) => state.username);
+  console.log("59", username);
+  // const [profile, setProfile] = useState({});
   useEffect(() => {
     if (token) {
+      console.log("63");
       fetch(`https://masai-api-mocker.herokuapp.com/user/${username}`, {
         method: "get",
         headers: { Authorization: `Bearer ${token}` },
       })
         .then((res) => res.json())
         .then((res) => {
-          console.log(setProfile(res));
+          // console.log(setProfile(res));
         })
         .catch((err) => console.log(err));
     }
-  }, []);
+  }, [username]);
 
+  if (localStorage.getItem("code%%4_name") !== null) {
+    var username = localStorage.getItem("code%%4_name");
+  }
+ console.log(username);
   return (
     <Container>
       <Section1>
-        <h1>{profile.name}</h1>
+        <h1>{username}</h1>
       </Section1>
       <Section3>
         <StyledLink to={"/home"}>Home</StyledLink>
