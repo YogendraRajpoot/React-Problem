@@ -1,11 +1,11 @@
 import React from "react";
 // import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 // import { AuthContext } from "../AuthContext";
 import { StyledLink } from "../login/Login";
 import { loadData } from "../../utils/localStorage";
-import { loginOut, logOut } from "../../redux/auth/action";
+import {  logOut } from "../../redux/auth/action";
 import { useNavigate } from "react-router-dom";
 
 
@@ -57,6 +57,15 @@ const Logout = styled.button`
 `;
 
 export const Sidebar = () => {
+  // const countP = useSelector((state) => state.todo.countp);
+  // const countOf = useSelector((state) => state.todo.countof);
+  // const countOt = useSelector((state) => state.todo.countot);
+  // const total = useSelector((state) => state.todo.total);
+  const total=loadData("total")
+  const countOt=loadData("countOT")
+  const countOf=loadData("countOF")
+  const countP=loadData("countP")
+  console.log("68",countP,countOf,countOt,total);
   let username = loadData("code%%4_name")
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -103,16 +112,16 @@ const logout=()=>{
       </Section3>
       <Section2>
         <div>
-          <Box>All </Box>
+          <Box>All {total} </Box>
         </div>
         <div>
-          <Box>Personal </Box>
+          <Box>Personal {countP} </Box>
         </div>
         <div>
-          <Box>Official </Box>
+          <Box>Official {countOf}</Box>
         </div>
         <div>
-          <Box>Other </Box>
+          <Box>Other {countOt} </Box>
         </div>
       </Section2>
       <Logout onClick={logout}>Logout</Logout>

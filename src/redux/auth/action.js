@@ -1,4 +1,5 @@
 import { saveData } from "../../utils/localStorage";
+import { todoList,countTodoList } from "../todo/action";
 
 export const is_Login = "is_Login";
 export const Login = "Login";
@@ -33,6 +34,8 @@ export const logOut = () => (dispatch) => {
     localStorage.removeItem("code%%4_name");
     localStorage.removeItem("code%%4_tkn");
     localStorage.removeItem("code%%4");
+    localStorage.removeItem("todoList");
+    
   // }
 }
 
@@ -63,6 +66,8 @@ export const loginUser = (payload) => (dispatch) => {
         // dispatch(userName(form.username));
         dispatch(islogin(true));
         dispatch(loginUserDetail())
+        dispatch(todoList())
+        // dispatch(countTodoList())
       }
       // login(res.token, username);
       // dispatch(istoken("123456789"));

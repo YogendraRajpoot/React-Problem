@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { newTodoTask } from "../../redux/todo/action";
 // import { StyledLink } from "../login/Login";
 import { Sidebar } from "../sidebar/Sidebar";
 import { LeftBar, Main, RightBar } from "../summary/Summary";
@@ -47,19 +49,20 @@ const StyledForm = styled.form`
 // `;
 
 export const NewTask = () => {
+  const dispatch=useDispatch()
   const [form, setForm] = useState({
     title: "",
     description: "",
     date: "",
     progress: "",
-    personal: "",
-    official: "",
-    other: "",
-    task: "",
+    isPersonal: false,
+    isOfficial: false,
+    isOther: false,
   });
   const handleChange = (e) => {
     let { name, value, checked, type } = e.target;
-    value = type === "checkbox" ? checked : value;
+    // console.log(type);
+    value = type === "checkbox" ? true : value;
     setForm({ ...form, [name]: value });
   };
 
@@ -68,30 +71,31 @@ export const NewTask = () => {
     description,
     date,
     progress,
-    personal,
-    official,
-    other,
-    task,
+    isPersonal,
+    isOfficial,
+    isOther  
   } = form;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(form);
-    fetch(`https://fake-json-todo.herokuapp.com/todo`, {
-      method: "post",
-      body: JSON.stringify(form),
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((res) => res.json())
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-    setForm({
-      title: "",
-      description: "",
-      date: "",
-      progress: "",
-      task: "",
-    });
+    dispatch(newTodoTask(form))
+    
+    // fetch(`https://fake-json-todo.herokuapp.com/todo`, {
+    //   method: "post",
+    //   body: JSON.stringify(form),
+    //   headers: { "Content-Type": "application/json" },
+    // })
+    //   .then((res) => res.json())
+    //   .then((res) => console.log(res))
+    //   .catch((err) => console.log(err));
+    // setForm({
+    //   title: "",
+    //   description: "",
+    //   date: "",
+    //   progress: "",
+    //   task: "",
+    // });
   };
 
   return (
@@ -149,7 +153,7 @@ export const NewTask = () => {
             <br />
             <label name="progress">
               Choose Any :-
-              <select name="progress" value={progress} onChange={handleChange}>
+              <select name="progress" value={progress} placeholder="Choose" onChange={handleChange}>
                 <option value="todo">Todo</option>
                 <option value="inprogress">Inprogress</option>
                 <option value="done">Done</option>
@@ -161,8 +165,8 @@ export const NewTask = () => {
               Personal
               <input
                 type="checkbox"
-                name="isTodo"
-                checked={personal}
+                name="isPersonal"
+                checked={isPersonal}
                 onChange={handleChange}
               />
             </label>
@@ -172,8 +176,8 @@ export const NewTask = () => {
               Official
               <input
                 type="checkbox"
-                name="isProgress"
-                checked={official}
+                name="isOfficial"
+                checked={isOfficial}
                 onChange={handleChange}
               />
             </label>
@@ -183,12 +187,12 @@ export const NewTask = () => {
               Other
               <input
                 type="checkbox"
-                name="isDone"
-                checked={other}
+                name="isOther"
+                checked={isOther}
                 onChange={handleChange}
               />
             </label>
-
+{/* 
             <br />
             <br />
             <label>
@@ -201,7 +205,7 @@ export const NewTask = () => {
                 onChange={handleChange}
                 required
               />
-            </label>
+            </label> */}
             <br />
             <br />
             <input className="submit" type="submit" value="Submit" />
