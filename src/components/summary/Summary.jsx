@@ -46,7 +46,9 @@ export const Summary = () => {
   let inprogress = loadData("inprogress")
   let todo = loadData("todo")
   console.log("43", isLogin);
-  if (loadData("code%%4") === false) {
+  console.log("50",loadData("code%%4"));
+  if (loadData("code%%4") === null) {
+    console.log("50",loadData("code%%4"));
     return <Navigate to="/login" />;
   }
   return (

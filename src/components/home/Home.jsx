@@ -54,7 +54,7 @@ export const Home = () => {
   //     .catch((err) => console.log(err));
   // };
   if (data === null) {
-    return <Navigate to="/" />;
+    return <Navigate to="/login" />;
   }
   return (
     <Main>
@@ -85,7 +85,7 @@ export const Home = () => {
                           <h3>{i.title}</h3>
                           <p>{i.description}</p>
                           <p>{i.date}</p>
-                          <p>{i.isPersonal}</p>
+                          {/* <p>Personal</p> */}
                           <p>{i.progress}</p>
                           <p>{i.task}</p>
                           <br />
@@ -105,7 +105,7 @@ export const Home = () => {
                         <h3>{i.title}</h3>
                         <p>{i.description}</p>
                         <p>{i.date}</p>
-                        <p>{i.isOfficial}</p>
+                        {/* <p>Official</p> */}
                         <p>{i.progress}</p>
                         <p>{i.task}</p>
                         <br />
@@ -125,7 +125,7 @@ export const Home = () => {
                         <h3>{i.title}</h3>
                         <p>{i.description}</p>
                         <p>{i.date}</p>
-                        <p>{i.isOther}</p>                        
+                        {/* <p>Other</p>                         */}
                         <p>{i.progress}</p>
                         <p>{i.task}</p>
                         <br />
