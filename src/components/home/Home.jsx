@@ -85,6 +85,7 @@ export const Home = () => {
                           <h3>{i.title}</h3>
                           <p>{i.description}</p>
                           <p>{i.date}</p>
+                          <p>{i.isPersonal}</p>
                           <p>{i.progress}</p>
                           <p>{i.task}</p>
                           <br />
@@ -104,6 +105,7 @@ export const Home = () => {
                         <h3>{i.title}</h3>
                         <p>{i.description}</p>
                         <p>{i.date}</p>
+                        <p>{i.isOfficial}</p>
                         <p>{i.progress}</p>
                         <p>{i.task}</p>
                         <br />
@@ -123,6 +125,7 @@ export const Home = () => {
                         <h3>{i.title}</h3>
                         <p>{i.description}</p>
                         <p>{i.date}</p>
+                        <p>{i.isOther}</p>                        
                         <p>{i.progress}</p>
                         <p>{i.task}</p>
                         <br />
