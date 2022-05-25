@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-// import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { AuthContext } from "../AuthContext";
-import { istoken } from "../redux/action";
+import { loginUser } from "../../redux/auth/action";
+import { loadData } from "../../utils/localStorage";
+// import { useDispatch } from "react-redux";
 // import { token } from "../redux/action";
 
 const Container = styled.div`
@@ -41,8 +41,9 @@ export const StyledLink = styled(Link)`
 `;
 
 export const Login = () => {
+  // const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { login } = useContext(AuthContext);
   const [form, setForm] = useState({
     username: "",
     password: "",
@@ -54,40 +55,35 @@ export const Login = () => {
 
   // token check in localstorage
 
-  useEffect(() => {
-    if (localStorage.getItem("code%%4") !== null) {
-      // dispatch(istoken(localStorage.getItem("code%%4")));
-      console.log(localStorage.getItem("code%%4"));
-      login(
-        localStorage.getItem("code%%4"),
-        localStorage.getItem("code%%4_name")
-      );
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (loadData("code%%4") === true) {
+  //     // dispatch(istoken(localStorage.getItem("code%%4")));
+  //     console.log(localStorage.getItem("code%%4"));
+  //     console.log("63-succes");
+  //     navigate(`/`)
+  //   }
+  // }, []);
   //*************************************************** */
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(form);
-    fetch(`https://masai-api-mocker.herokuapp.com/auth/login`, {
-      method: "post",
-      body: JSON.stringify(form),
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res.token);
-        dispatch(istoken(res.token));
-        login(res.token, username);
-        // dispatch(istoken("123456789"));
-        // login("123456789", "username");
-        // console.log(username);
-      });
-    // .catch((err) => console.log(err));
+    dispatch(loginUser(form))
+    setTimeout(() => {
+      if (loadData("code%%4") === true) {
+        console.log("74-succes");
+        navigate(`/`)
+      }
+    }, 1000);
   };
 
   const { username, password } = form;
 
+  // const isLogin = useSelector((state) => state.auth.isLogin);
+  if (loadData("code%%4") === true) {
+    console.log("84-succes");
+    return <Navigate to="/" />;
+  }
   return (
     <Container>
       <h1>Login</h1>
@@ -104,6 +100,7 @@ export const Login = () => {
             name="username"
             value={username}
             onChange={handleChange}
+            required
           />
         </label>
         <br />
@@ -117,6 +114,7 @@ export const Login = () => {
             name="password"
             value={password}
             onChange={handleChange}
+            required
           />
         </label>
         <br />

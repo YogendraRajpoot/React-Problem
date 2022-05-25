@@ -4,18 +4,18 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import { AuthContextProvider } from "./components/AuthContext";
+// import { AuthContextProvider } from "./components/AuthContext";
 import { Provider } from "react-redux";
-import { store } from "./components/redux/store";
+import { store } from "./redux/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <AuthContextProvider>
+        {/* <AuthContextProvider> */}
           <App />
-        </AuthContextProvider>
+        {/* </AuthContextProvider> */}
       </BrowserRouter>
     </Provider>
   </React.StrictMode>

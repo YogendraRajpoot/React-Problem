@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import styled from "styled-components";
+import { loadData } from "../../utils/localStorage";
 import { Sidebar } from "../sidebar/Sidebar";
 
 export const Main = styled.div`
@@ -39,8 +40,9 @@ export const RightBar = styled.div`
 `;
 
 export const Summary = () => {
-  const isLogin = useSelector((state) => state.isLogin);
-  if (!isLogin) {
+  const isLogin = useSelector((state) => state.auth.isLogin);
+  console.log("43",isLogin);
+  if (loadData("code%%4")===false) {
     return <Navigate to="/login" />;
   }
   return (

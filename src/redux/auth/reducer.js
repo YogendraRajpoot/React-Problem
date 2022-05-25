@@ -1,29 +1,36 @@
 import { is_Login, Login, Token, User_Name } from "./action";
 
-export const ReducerK = (store, action) => {
+const initState = {
+  user: {},
+  isLogin: false,
+  token: "",
+  username: "",
+}
+export const authReducer = (state = initState, action) => {
   switch (action.type) {
     case is_Login:
       return {
-        ...store,
+        ...state,
         isLogin: action.payload,
       };
+
     case Login:
       return {
-        ...store,
+        ...state,
         user: { ...action.payload },
       };
     case Token:
       return {
-        ...store,
+        ...state,
         token: action.payload,
       };
     case User_Name:
       return {
-        ...store,
+        ...state,
         username: action.payload,
       };
 
     default:
-      return store;
+      return state;
   }
 };

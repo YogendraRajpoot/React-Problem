@@ -1,8 +1,13 @@
-import React, { useContext, useEffect } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
+// import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { AuthContext } from "../AuthContext";
+// import { AuthContext } from "../AuthContext";
 import { StyledLink } from "../login/Login";
+import { loadData } from "../../utils/localStorage";
+import { loginOut, logOut } from "../../redux/auth/action";
+import { useNavigate } from "react-router-dom";
+
 
 const Container = styled.div`
   // background-color: transparent;
@@ -52,31 +57,40 @@ const Logout = styled.button`
 `;
 
 export const Sidebar = () => {
-  const { logout } = useContext(AuthContext);
-  const token = useSelector((state) => state.token);
-
-  var username = useSelector((state) => state.username);
-  console.log("59", username);
+  let username = loadData("code%%4_name")
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  // let username = localStorage.getItem("code%%4_name").replace(/['"]+/g, '');
+  // let token = localStorage.getItem("code%%4_tkn").replace(/['"]+/g, '');
+  // if (localStorage.getItem("code%%4_name") !== null) {
+  //   username = localStorage.getItem("code%%4_name");
+  // }
+  // const { logout } = useContext(AuthContext);
+  // const token = useSelector((state) => state.auth.token);
+  // console.log("62",token);
+  // console.log("63",username);
+  // let username = useSelector((state) => state.auth.username);
   // const [profile, setProfile] = useState({});
-  useEffect(() => {
-    if (token) {
-      console.log("63");
-      fetch(`https://masai-api-mocker.herokuapp.com/user/${username}`, {
-        method: "get",
-        headers: { Authorization: `Bearer ${token}` },
-      })
-        .then((res) => res.json())
-        .then((res) => {
-          // console.log(setProfile(res));
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [username]);
+  // useEffect(() => {
+  //   if (token) {
+  //     console.log("63");
+  //     fetch(`https://masai-api-mocker.herokuapp.com/user/${username}`, {
+  //       method: "get",
+  //       headers: { "Authorization": `Bearer `+ token },
+  //     })
+  //       .then((res) => res.json())
+  //       .then((res) => {
+  //         console.log("75",res);
+  //       })
+  //       .catch((err) => console.log(err));
+  //   }
+  // }, [username]);
+const logout=()=>{
+  dispatch(logOut())
+  console.log("90");
+  navigate(`/login`)
+}
 
-  if (localStorage.getItem("code%%4_name") !== null) {
-    var username = localStorage.getItem("code%%4_name");
-  }
- console.log(username);
   return (
     <Container>
       <Section1>

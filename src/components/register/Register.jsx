@@ -40,8 +40,8 @@ export const Register = () => {
     name: "",
     email: "",
     password: "",
-    mobilenumber: "",
-    aboutyou: "",
+    mobile: "",
+    description: "",
     username: "",
   });
   const handleChange = (e) => {
@@ -49,7 +49,7 @@ export const Register = () => {
     setForm({ ...form, [name]: value });
   };
 
-  const { name, email, password, username, mobilenumber, aboutyou } = form;
+  const { name, email, password, username, mobile, description } = form;
 
   const hadleSubmit = (e) => {
     e.preventDefault();
@@ -137,8 +137,8 @@ export const Register = () => {
           <input
             type="number"
             placeholder="Enter Your Mobile-Number"
-            name="mobilenumber"
-            value={mobilenumber}
+            name="mobile"
+            value={mobile}
             onChange={handleChange}
             required
 
@@ -151,8 +151,8 @@ export const Register = () => {
           <input
             type="text"
             placeholder="Write Something About You "
-            name="aboutyou"
-            value={aboutyou}
+            name="description"
+            value={description}
             onChange={handleChange}
             required
 
